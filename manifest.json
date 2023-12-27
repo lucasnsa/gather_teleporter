@@ -1,19 +1,38 @@
 {
-	"manifest_version": 2,
+	"manifest_version": 3,
 	"name": "Teleporter",
 	"version": "0.2.13",
+	"permissions": [
+		"tabs",
+		"activeTab",
+		"storage",
+		"scripting",
+		"webNavigation",
+		"webRequest",
+		"declarativeContent"
+	],
 	"content_scripts": [
 		{
-			"matches":[
+			"matches": [
 				"*://gather.town/*",
-				"*://staging.gather.town/*"
+				"*://staging.gather.town/*",
+				"*://app.gather.town/*"
 			],
-			"js": ["inject.js"],
+			"js": [
+				"inject.js"
+			],
 			"all_frames": true
 		}
 	],
-  "web_accessible_resources": ["teleport.js", "player-ui.js"],
-	"browser_action":{
-		"default_icon": "icon.png"
-	}
+	"web_accessible_resources": [
+		{
+			"resources": [
+				"teleport.js",
+				"player-ui.js"
+			],
+			"matches": [
+				"*://app.gather.town/*"
+			]
+		}
+	]
 }
